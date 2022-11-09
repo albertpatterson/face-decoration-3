@@ -1,15 +1,18 @@
 {
-  "name": "simple",
+  "name": "stackblitz-project",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Create a Stackblitz project with minimal files.",
   "scripts": {
-    "start": "webpack",
-    "dev": "webpack serve --open --no-hot --live-reload",
+    "start": "webpack serve --config webpack.config.dev.js --open --no-hot --live-reload",
+    "build": "webpack --config webpack.config.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Albert Patterson",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.7.1",
@@ -17,6 +20,7 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "sass-loader": "^13.1.0"
   }
 }

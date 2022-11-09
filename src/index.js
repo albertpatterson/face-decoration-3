@@ -1,10 +1,8 @@
-import './style.css';
-import shopkinImg from './images/shopkin.png';
+import './style.scss';
+import shopkinImg from './assets/shopkin.png';
 import { log } from './util/util.js';
 
-import stuff from './stuff';
-
-console.log('hello world');
+console.log('hello world from index');
 log();
 
 const img = document.createElement('img');
