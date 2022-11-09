@@ -6,12 +6,15 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: './src/index.js',
   output: {
+    clean: true,
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      inject: 'body',
+      scriptLoading: 'blocking',
     }),
   ],
   module: {
@@ -22,11 +25,22 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: 'asset/inline',
+      },
+      {
+        test: /\.(mp4)$/i,
+        type: 'asset/inline',
       },
       {
         test: /\.html$/i,
         loader: 'html-loader',
+      },
+      {
+        test: /.*stuff\.js$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'stuff.js',
+        },
       },
     ],
   },

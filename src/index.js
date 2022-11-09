@@ -2,6 +2,8 @@ import './style.css';
 import shopkinImg from './images/shopkin.png';
 import { log } from './util/util.js';
 
+import stuff from './stuff';
+
 console.log('hello world');
 log();
 
