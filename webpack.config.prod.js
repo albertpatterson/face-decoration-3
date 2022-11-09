@@ -57,9 +57,11 @@ class InlineChunkHtmlPlugin {
 
 const deleteMainPlugin = {
   apply: (compiler) => {
-    compiler.hooks.afterEmit.tap('DeleteMainPlugin', (compilation) => {
-      fs.promises.rm('./dist/main.js');
-      fs.promises.cp('./STACKBLITZ_README.md', './dist/README.md');
+    compiler.hooks.afterEmit.tap('DeleteMainPlugin', async (compilation) => {
+      await fs.promises.rm('./dist/main.js');
+      await fs.promises.cp('./STACKBLITZ_README.md', './dist/README.md');
+      await fs.promises.rm('./dist/code.js');
+      await fs.promises.cp('./src/code.js', './dist/code.js');
     });
   },
 };
