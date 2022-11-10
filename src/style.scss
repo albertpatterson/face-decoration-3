@@ -1,3 +1,24 @@
 body {
   text-align: center;
 }
+
+#full-img {
+  height: 100px;
+}
+
+#preview-container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  img {
+    max-height: 75px;
+  }
+}
+
+.selected {
+  outline: 3px solid rgb(105, 105, 191);
+}

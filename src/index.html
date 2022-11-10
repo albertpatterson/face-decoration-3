@@ -7,8 +7,24 @@
     <title>Document</title>
   </head>
   <body>
-    <p class="hello">Hello</p>
-    <video src="./assets/wave.mp4" loop autoplay muted></video>
-    <script src="./code.js"></script>
+    <img id="full-img" />
+    <div id="preview-container">
+      <img src="./assets/crown.png" alt="crown" />
+      <img src="./assets/googly_eyes.png" alt="googly_eyes" />
+      <img src="./assets/hat.png" alt="hat" />
+      <img src="./assets/headphones.png" alt="headphones" />
+      <img src="./assets/moustache.png" alt="moustache" />
+      <img src="./assets/radiant_eyes.png" alt="radiant_eyes" />
+      <img src="./assets/shopkin.png" alt="shopkin" />
+      <img src="./assets/tiara.png" alt="tiara" />
+    </div>
+
+    <button id="add-btn">Add</button>
+    <input
+      type="file"
+      id="file-select"
+      accept="image/*"
+      style="display: none"
+    />
   </body>
 </html>
