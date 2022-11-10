@@ -22,3 +22,10 @@ body {
 .selected {
   outline: 3px solid rgb(105, 105, 191);
 }
+
+#add-btn {
+  background-color: green;
+  color: white;
+  font-size: 24px;
+  margin-top: 10px;
+}
