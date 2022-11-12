@@ -9,10 +9,6 @@ body {
   text-align: center;
 }
 
-#view-button-row {
-  display: none;
-}
-
 .button-row {
   display: flex;
   flex-direction: row;
@@ -138,6 +134,7 @@ body {
 }
 
 #preview-container {
+  margin: 25px 0;
   max-width: 100%;
   display: flex;
   flex-direction: row;
@@ -159,7 +156,6 @@ body {
   border-color: rgb(0, 225, 0);
   color: white;
   font-size: 36px;
-  margin: 25px;
 }
 
 #user-code-error {
@@ -169,5 +165,24 @@ body {
 }
 
 #user-code-valid {
+  display: none;
+}
+
+#test-section {
+  display: none;
+  #test-section-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    #test-img,
+    #test-decoration-canvas {
+      height: 300px;
+      width: 300px;
+    }
+  }
+}
+
+#videos-section {
   display: none;
 }

@@ -16,19 +16,29 @@ import './style.scss';
 import './carousel';
 import './add_img';
 import { getDrawError } from './validate';
+import { updateTest, stopTest } from './test';
 
+const testSection = document.getElementById('test-section');
+const videoSection = document.getElementById('videos-section');
 const canvas = document.getElementById('decoration-canvas');
 let currentVideo = null;
 
+window.launchTest = function () {
+  showTest();
+};
+
 window.launchExample = async function () {
+  showVideos();
   await playExample();
 };
 
 window.launchCamera = async function () {
+  showVideos();
   await playCamera();
 };
 
 window.launchScreen = async function () {
+  showVideos();
   await playScreen();
 };
 
@@ -39,6 +49,7 @@ getModel();
 
   if (!drawError) {
     showContent();
+    window.launchTest();
     const model = await getModel();
     startVideo();
   } else {
@@ -112,4 +123,16 @@ async function playScreen() {
   await initiateVideoAndCanvas(video, canvas);
   const model = await getModel();
   takepictures(video, canvas, model);
+}
+
+function showTest() {
+  testSection.style.display = 'block';
+  videoSection.style.display = 'none';
+  updateTest();
+}
+
+function showVideos() {
+  testSection.style.display = 'none';
+  videoSection.style.display = 'block';
+  stopTest();
 }
