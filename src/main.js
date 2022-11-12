@@ -15,7 +15,7 @@ import {
 import './style.scss';
 import './carousel';
 import './add_img';
-import { getDrawError } from './validate';
+import { throwDrawError } from './validate';
 import { updateTest, stopTest } from './test';
 
 const testSection = document.getElementById('test-section');
@@ -43,16 +43,20 @@ window.launchScreen = async function () {
 };
 
 (async () => {
-  const drawError = getDrawError();
-
-  if (!drawError) {
-    showContent();
-    document.addEventListener('DOMContentLoaded', async () => {
-      startVideo();
-    });
-    await window.launchTest();
+  if (window.userCodeError) {
+    showUserLoadError(window.userCodeError);
   } else {
-    showUserError(drawError);
+    try {
+      throwDrawError();
+
+      showContent();
+      document.addEventListener('DOMContentLoaded', async () => {
+        startVideo();
+      });
+      await window.launchTest();
+    } catch (drawError) {
+      showUserRunError(drawError);
+    }
   }
 })();
 
@@ -60,7 +64,17 @@ function showContent() {
   document.getElementById('user-code-valid').style.display = 'block';
 }
 
-function showUserError(drawError) {
+function showUserLoadError(drawErrorEvent) {
+  const errorBlock = document.getElementById('user-code-error');
+  const msg = `Error in code.js at line #${drawErrorEvent.lineno}, col #${drawErrorEvent.colno}: "${drawErrorEvent.message}" -- code.js: line #${drawErrorEvent.lineno}, col #${drawErrorEvent.colno}`;
+  const pre = document.createElement('pre');
+  pre.innerText = msg;
+  errorBlock.appendChild(pre);
+
+  errorBlock.style.display = 'block';
+}
+
+function showUserRunError(drawError) {
   const errorBlock = document.getElementById('user-code-error');
   const pre = document.createElement('pre');
   pre.innerText = drawError.stack;

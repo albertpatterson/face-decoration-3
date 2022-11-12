@@ -15,65 +15,54 @@ const faceTiltAngle = (Math.PI / 180) * 10;
 const BASE_MESSAGE =
   '"window.getDrawProps must return an object like the following {xCenter:1, yCenter:2, width:3, height:4, angle:5}';
 
-export function getDrawError() {
-  return getFcnError() || getPropsError() || null;
+export function throwDrawError() {
+  throwFcnError() || throwPropsError() || null;
 }
 
-function getFcnError() {
+function throwFcnError() {
   if (!window.getDrawProps) {
-    return new Error(
+    throw new Error(
       `You must define a function called "window.getDrawProps". ${BASE_MESSAGE}`
     );
   }
-  return null;
 }
 
-function getPropError(drawProps, name) {
+function throwPropError(drawProps, name) {
   const value = drawProps[name];
   if (value === undefined) {
-    return new Error(`Property "${name}" missing. ${BASE_MESSAGE}`);
+    throw new Error(`Property "${name}" missing. ${BASE_MESSAGE}`);
   }
 
   if (typeof value !== 'number' || Number.isNaN(value)) {
-    return new Error(`Property "${name}" must be a number. ${BASE_MESSAGE}`);
+    throw new Error(`Property "${name}" must be a number. ${BASE_MESSAGE}`);
   }
-
-  return null;
 }
 
-function getPropsError() {
-  try {
-    const drawProps = window.getDrawProps(
-      leftEyeX,
-      leftEyeY,
-      rightEyeX,
-      rightEyeY,
-      noseTipX,
-      noseTipY,
-      mouthCenterX,
-      mouthCenterY,
-      leftEarTragionX,
-      leftEarTragionY,
-      rightEarTragionX,
-      rightEarTragionY,
-      faceTiltAngle
-    );
-    if (!drawProps) {
-      return new Error(
-        `"window.getDrawProps" does not return a value. ${BASE_MESSAGE}`
-      );
-    }
+function throwPropsError() {
+  const drawProps = window.getDrawProps(
+    leftEyeX,
+    leftEyeY,
+    rightEyeX,
+    rightEyeY,
+    noseTipX,
+    noseTipY,
+    mouthCenterX,
+    mouthCenterY,
+    leftEarTragionX,
+    leftEarTragionY,
+    rightEarTragionX,
+    rightEarTragionY,
+    faceTiltAngle
+  );
 
-    const names = ['xCenter', 'yCenter', 'width', 'height', 'angle'];
-    for (const name of names) {
-      let drawError = getPropError(drawProps, name);
-      if (drawError) {
-        return drawError;
-      }
-    }
-  } catch (error) {
-    return error;
+  if (!drawProps) {
+    throw new Error(
+      `"window.getDrawProps" does not return a value. ${BASE_MESSAGE}`
+    );
   }
 
-  return null;
+  const names = ['xCenter', 'yCenter', 'width', 'height', 'angle'];
+  for (const name of names) {
+    throwPropError(drawProps, name);
+  }
 }

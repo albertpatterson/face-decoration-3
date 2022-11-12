@@ -107,6 +107,14 @@
       />
     </div>
 
+    <script>
+      function logError(error) {
+        window.userCodeError = error;
+        window.removeEventListener('error', logError);
+      }
+      window.addEventListener('error', logError);
+    </script>
+
     <script src="./code.js"></script>
 
     <!-- Require the peer dependencies of face-detection. -->
