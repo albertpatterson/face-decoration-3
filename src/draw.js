@@ -1,6 +1,6 @@
 import { drawKeypoints } from './util';
 import { getPredictions } from './model';
-import { translateUserCode } from './translateUserCode';
+import { translateUserCode } from './translate_user_code';
 
 export function initiateVideoAndCanvas(video, canvas) {
   return video.play().then(() => {

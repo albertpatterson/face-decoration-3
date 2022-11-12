@@ -103,7 +103,7 @@ module.exports = {
         loader: 'html-loader',
       },
       {
-        test: /.*code\.js$/i,
+        test: /.*[^_]code\.js$/i,
         type: 'asset/resource',
         generator: {
           filename: 'code.js',

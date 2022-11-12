@@ -2,7 +2,7 @@
 
 The app will capture video and then apply artificial intelligence to decorate your face.
 
-Make your own with [REPLIT.com](https://replit.com/@apatterson189/face-decoration)
+Make your own with [Stackblizt](https://stackblitz.com/edit/web-platform-znstzr?file=code.js,README.md)
 
 ![Demo](./doc/demo.gif 'Demo')
 
@@ -17,11 +17,13 @@ create your own decortion and code to position it!
    1. [Sketchpad](https://sketch.io/sketchpad/)
    1. [Figma](https://www.figma.com/)
    1. etc...
-1. replace the image at "edit/decoration.png" with your new decoration.
+1. upload your image.
+   ![Upload your image](./doc/add_img.gif 'Upload your image')
 
 ### Code Your Logic to Position the Decoration
 
-update "edit/get_draw_props.js" to correctly calculate the drawing properties for your decoration. - the face parameter includes data like the following:
+update "code.js" to correctly calculate the drawing properties for your decoration. - the face parameter includes data like the following:
+![Edit code.js](./doc/code_edit.gif 'Edit code.js')
 
 #### Keypoints (JSON)
 

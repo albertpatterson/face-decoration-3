@@ -16,7 +16,7 @@ body {
   gap: 10px;
   button {
     flex: 1;
-    background-color: rgb(91, 77, 222);
+    background-color: #2b74ef;
     border-color: rgb(255, 255, 255);
     color: white;
     font-size: 24px;
@@ -143,12 +143,12 @@ body {
   flex-wrap: wrap;
 
   img {
-    max-height: 75px;
+    max-height: 40px;
   }
 }
 
 .selected {
-  outline: 3px solid rgb(105, 105, 191);
+  outline: 3px solid #2b74ef;
 }
 
 #add-btn {
@@ -180,9 +180,20 @@ body {
       height: 300px;
       width: 300px;
     }
+    #test-img {
+      display: none;
+    }
   }
 }
 
 #videos-section {
   display: none;
+}
+
+#build-your-own {
+  font-weight: bold;
+  gap: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
