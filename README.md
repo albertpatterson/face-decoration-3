@@ -24,7 +24,7 @@ create your own decortion and code to position it!
 
 ### Code Your Logic to Position the Decoration
 
-update "code.js" to correctly calculate the drawing properties for your decoration. - the face parameter includes data like the following:
+Update "code.js" to correctly calculate the drawing properties for your decoration.
 ![Edit code.js](./doc/code_edit.gif 'Edit code.js')
 
 #### Keypoints (JSON)
