@@ -5,9 +5,6 @@ import {
 } from './cache';
 
 export const previewContainer = document.getElementById('preview-container');
-const fullImg = document.getElementById('full-img');
-
-// showFullImg(previewContainer.querySelector('img'));
 
 const cachedImgs = getCachedImgs();
 for (const cachedImg of cachedImgs) {
@@ -18,20 +15,6 @@ for (const cachedImg of cachedImgs) {
 
 const selectedImg = getInitialSelectedImg();
 showFullImg(selectedImg);
-
-// const selectedSrc = getCachedSelectedSrc();
-// let intialSelectionMade = false;
-// if (selectedSrc) {
-
-// }
-
-// if (!intialSelectionMade) {
-//   showFullImg(previewContainer.querySelector('img'));
-// }
-
-// const imgs = previewContainer.querySelectorAll('img');
-// const selected = imgs[selectedIdx] || imgs[0];
-// showFullImg(selected);
 
 previewContainer.addEventListener('click', (event) => {
   const target = event.target;
@@ -48,7 +31,6 @@ export function showFullImg(preview) {
   }
   preview.classList.add('selected');
   const src = preview.src.slice();
-  fullImg.src = src;
   setCachedSelectedImg(src);
 }
 

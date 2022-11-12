@@ -68,7 +68,7 @@ const deleteMainPlugin = {
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/main.js',
   output: {
     clean: true,
     filename: 'main.js',
