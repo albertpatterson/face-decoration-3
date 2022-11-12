@@ -7,7 +7,8 @@ const TEST_IMG = document.getElementById('test-img');
 const TEST_CANVAS = document.getElementById('test-decoration-canvas');
 
 let int = null;
-export function updateTest() {
+export async function updateTest() {
+  await updateTestSingle();
   int = setInterval(updateTestSingle, 250);
 }
 
@@ -15,12 +16,12 @@ export function stopTest() {
   clearInterval(int);
 }
 
-function updateTestSingle() {
-  takepictures(
+async function updateTestSingle() {
+  await takepictures(
     TEST_IMG,
     TEST_CANVAS,
     {
-      estimateFaces: () => EXAMPLE_FACES,
+      estimateFaces: () => Promise.resolve(EXAMPLE_FACES),
     },
     false,
     true

@@ -23,8 +23,8 @@ const videoSection = document.getElementById('videos-section');
 const canvas = document.getElementById('decoration-canvas');
 let currentVideo = null;
 
-window.launchTest = function () {
-  showTest();
+window.launchTest = async function () {
+  await showTest();
 };
 
 window.launchExample = async function () {
@@ -42,16 +42,15 @@ window.launchScreen = async function () {
   await playScreen();
 };
 
-getModel();
-
 (async () => {
   const drawError = getDrawError();
 
   if (!drawError) {
     showContent();
-    window.launchTest();
-    const model = await getModel();
-    startVideo();
+    document.addEventListener('DOMContentLoaded', async () => {
+      startVideo();
+    });
+    await window.launchTest();
   } else {
     showUserError(drawError);
   }
@@ -72,6 +71,8 @@ function showUserError(drawError) {
 
 async function startVideo() {
   startLoading();
+
+  const model = await getModel();
 
   await playExample();
 
@@ -125,10 +126,10 @@ async function playScreen() {
   takepictures(video, canvas, model);
 }
 
-function showTest() {
+async function showTest() {
   testSection.style.display = 'block';
   videoSection.style.display = 'none';
-  updateTest();
+  await updateTest();
 }
 
 function showVideos() {

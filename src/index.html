@@ -107,16 +107,6 @@
       />
     </div>
 
-    <!-- Require the peer dependencies of face-detection. -->
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
-
-    <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-detection"></script>
-
     <script>
       function getPredictionPoint(prediction, name) {
         const part = prediction.keypoints.find(
@@ -157,5 +147,30 @@
       }
     </script>
     <script src="./code.js"></script>
+
+    <!-- Require the peer dependencies of face-detection. -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"
+    ></script>
+
+    <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"
+    ></script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-detection"
+    ></script>
   </body>
 </html>
