@@ -14,43 +14,6 @@
   <body>
     <h1 id="title">Face Decoration</h1>
 
-    <div id="view-button-row" class="button-row">
-      <button onclick="launchExample()">Example</button>
-      <button onclick="launchCamera()">Camera</button>
-      <button onclick="launchScreen()">Screen</button>
-    </div>
-
-    <div>
-      <div id="loading-indicator">
-        <h1>Loading</h1>
-        <div class="lds-spinner">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-
-        <p id="extra-loading-info">
-          Loading may take up to 1 minute for slow connections
-        </p>
-      </div>
-
-      <div class="canvas-wrapper">
-        <canvas id="decoration-canvas"></canvas>
-      </div>
-      <div class="video-wrapper" id="video-wrapper"></div>
-    </div>
-
-    <p id="error"></p>
-
     <div id="details">
       <p>
         Stream live video from the camera and decorate faces using a free
@@ -69,27 +32,68 @@
       </p>
     </div>
 
-    <div id="preview-container">
-      <img src="./assets/sunglasses.png" alt="sunglasses" />
-      <img src="./assets/googly_eyes.png" alt="googly_eyes" />
-      <img src="./assets/radiant_eyes.png" alt="radiant_eyes" />
-      <img src="./assets/smile.png" alt="smile" />
-      <img src="./assets/crown.png" alt="crown" />
-      <img src="./assets/hat.png" alt="hat" />
-      <img src="./assets/headphones.png" alt="headphones" />
-      <img src="./assets/moustache.png" alt="moustache" />
-      <img src="./assets/shopkin.png" alt="shopkin" />
-      <img src="./assets/tiara.png" alt="tiara" />
+    <div id="user-code-error"></div>
+
+    <div id="user-code-valid">
+      <div id="view-button-row" class="button-row">
+        <button onclick="launchExample()">Example</button>
+        <button onclick="launchCamera()">Camera</button>
+        <button onclick="launchScreen()">Screen</button>
+      </div>
+
+      <div>
+        <div id="loading-indicator">
+          <h1>Loading</h1>
+          <div class="lds-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+
+          <p id="extra-loading-info">
+            Loading may take up to 1 minute for slow connections
+          </p>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="decoration-canvas"></canvas>
+        </div>
+        <div class="video-wrapper" id="video-wrapper"></div>
+      </div>
+
+      <p id="error"></p>
+
+      <div id="preview-container">
+        <img src="./assets/sunglasses.png" alt="sunglasses" />
+        <img src="./assets/googly_eyes.png" alt="googly_eyes" />
+        <img src="./assets/radiant_eyes.png" alt="radiant_eyes" />
+        <img src="./assets/smile.png" alt="smile" />
+        <img src="./assets/crown.png" alt="crown" />
+        <img src="./assets/hat.png" alt="hat" />
+        <img src="./assets/headphones.png" alt="headphones" />
+        <img src="./assets/moustache.png" alt="moustache" />
+        <img src="./assets/shopkin.png" alt="shopkin" />
+        <img src="./assets/tiara.png" alt="tiara" />
+      </div>
+
+      <button id="add-btn">Add Image</button>
+
+      <input
+        type="file"
+        id="file-select"
+        accept="image/*"
+        style="display: none"
+      />
     </div>
-
-    <button id="add-btn">Add Image</button>
-
-    <input
-      type="file"
-      id="file-select"
-      accept="image/*"
-      style="display: none"
-    />
 
     <!-- Require the peer dependencies of face-detection. -->
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection"></script>

@@ -40,7 +40,7 @@ function toDataURLCB(src, callback) {
     canvas.height = this.naturalHeight;
     canvas.width = this.naturalWidth;
     context.drawImage(this, 0, 0);
-    var dataURL = canvas.toDataURL('image/jpeg');
+    var dataURL = canvas.toDataURL('image/png');
     callback(dataURL);
   };
   image.src = src;

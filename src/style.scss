@@ -2,6 +2,7 @@ body {
   display: block;
   margin: 0;
   text-align: center;
+  padding: 0 25px;
 }
 
 #title {
@@ -15,8 +16,13 @@ body {
 .button-row {
   display: flex;
   flex-direction: row;
+  margin: 25px;
+  gap: 10px;
   button {
     flex: 1;
+    background-color: rgb(91, 77, 222);
+    border-color: rgb(255, 255, 255);
+    color: white;
     font-size: 24px;
   }
 }
@@ -154,4 +160,14 @@ body {
   color: white;
   font-size: 36px;
   margin: 25px;
+}
+
+#user-code-error {
+  display: none;
+  text-align: left;
+  color: red;
+}
+
+#user-code-valid {
+  display: none;
 }

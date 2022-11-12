@@ -15,6 +15,7 @@ import {
 import './style.scss';
 import './carousel';
 import './add_img';
+import { getDrawError } from './validate';
 
 const canvas = document.getElementById('decoration-canvas');
 let currentVideo = null;
@@ -34,9 +35,29 @@ window.launchScreen = async function () {
 getModel();
 
 (async () => {
-  const model = await getModel();
-  startVideo();
+  const drawError = getDrawError();
+
+  if (!drawError) {
+    showContent();
+    const model = await getModel();
+    startVideo();
+  } else {
+    showUserError(drawError);
+  }
 })();
+
+function showContent() {
+  document.getElementById('user-code-valid').style.display = 'block';
+}
+
+function showUserError(drawError) {
+  const errorBlock = document.getElementById('user-code-error');
+  const pre = document.createElement('pre');
+  pre.innerText = drawError.stack;
+  errorBlock.appendChild(pre);
+
+  errorBlock.style.display = 'block';
+}
 
 async function startVideo() {
   startLoading();
