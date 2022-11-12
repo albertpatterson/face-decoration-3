@@ -1,7 +1,7 @@
 {
-  "name": "stackblitz-project",
+  "name": "face-decoration",
   "version": "1.0.0",
-  "description": "Create a Stackblitz project with minimal files.",
+  "description": "An AI driven app that decorates faces",
   "scripts": {
     "start": "webpack serve --config webpack.config.dev.js --open --no-hot --live-reload",
     "build": "webpack --config webpack.config.prod.js",
@@ -11,7 +11,7 @@
   "author": "Albert Patterson",
   "repository": {
     "type": "git",
-    "url": "https://github.com/albertpatterson/stackblitz-project"
+    "url": "https://github.com/albertpatterson/face-decoration-3"
   },
   "license": "ISC",
   "devDependencies": {
