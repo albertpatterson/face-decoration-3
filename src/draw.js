@@ -1,5 +1,6 @@
 import { drawKeypoints } from './util';
 import { getPredictions } from './model';
+import { translateUserCode } from './translateUserCode';
 
 export function initiateVideoAndCanvas(video, canvas) {
   return video.play().then(() => {
@@ -79,7 +80,7 @@ function drawOnVideo(context, prediction, scale) {
   }
 
   const { xCenter, yCenter, width, height, angle } =
-    window.getDrawProps(prediction);
+    translateUserCode(prediction);
   const decoration = document.querySelector('img.selected');
   drawImageCenter(context, decoration, xCenter, yCenter, width, height, angle);
 }

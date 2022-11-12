@@ -9,70 +9,115 @@
 // rightEarTragion    noseTip    leftEarTragion
 //                  mouthCenter
 
-window.getDrawProps = function (face) {
+window.getDrawProps = function (
+  leftEyeX,
+  leftEyeY,
+  rightEyeX,
+  rightEyeY,
+  noseTipX,
+  noseTipY,
+  mouthCenterX,
+  mouthCenterY,
+  leftEarTragionX,
+  leftEarTragionY,
+  rightEarTragionX,
+  rightEarTragionY,
+  faceTiltAngle
+) {
   // face object has the properties shown at https://github.com/albertpatterson/face-decoration#keypoints-json
-  // getFacePoint method helps to get the desired face point
 
-  const leftEye = getPredictionPoint(face, 'leftEye');
-  const rightEye = getPredictionPoint(face, 'rightEye');
-  const leftEar = getPredictionPoint(face, 'leftEarTragion');
-  const rightEar = getPredictionPoint(face, 'rightEarTragion');
-  const rawWidth = leftEar.x - rightEar.x;
+  const rawWidth = leftEarTragionX - rightEarTragionX;
   const width = rawWidth;
 
-  const xCenter = (rightEye.x + leftEye.x) / 2;
-  const yCenter = (rightEye.y + leftEye.y) / 2;
+  const xCenter = (rightEyeX + leftEyeX) / 2;
+  const yCenter = (rightEyeY + leftEyeY) / 2;
   const height = width / 3;
-  const earXDistance = rawWidth;
-  const earYDistance = leftEar.y - rightEar.y;
 
-  const angle = getAngle(earXDistance, earYDistance);
+  const angle = faceTiltAngle;
 
   // draw properties on the face https://github.com/albertpatterson/face-decoration#draw-properties
   return { xCenter, yCenter, width, height, angle };
 };
 
-// window.getDrawProps = function getDrawProps(face) {
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * Example for positioning the smile
+ */
+// window.getDrawProps = function (
+//   leftEyeX,
+//   leftEyeY,
+//   rightEyeX,
+//   rightEyeY,
+//   noseTipX,
+//   noseTipY,
+//   mouthCenterX,
+//   mouthCenterY,
+//   leftEarTragionX,
+//   leftEarTragionY,
+//   rightEarTragionX,
+//   rightEarTragionY,
+//   faceTiltAngle
+// ) {
 //   // face object has the properties shown at https://github.com/albertpatterson/face-decoration#keypoints-json
 //   // getFacePoint method helps to get the desired face point
 
-//   const leftEar = getPredictionPoint(face, 'leftEarTragion');
-//   const rightEar = getPredictionPoint(face, 'rightEarTragion');
-//   const rawWidth = leftEar.x - rightEar.x;
+//   const rawWidth = leftEarTragionX - rightEarTragionX;
+//   const width = 0.75 * rawWidth;
+//   const height = width / 2;
+//   const xCenter = mouthCenterX;
+//   const yCenter = mouthCenterY;
+
+//   const earXDistance = rawWidth;
+//   const earYDistance = leftEarTragionY - rightEarTragionY;
+
+//   const angle = faceTiltAngle;
+
+//   // draw properties drawn on the face https://github.com/albertpatterson/face-decoration#draw-properties
+//   return { xCenter, yCenter, width, height, angle };
+// };
+
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * Example for positioning the shopkin
+ */
+// window.getDrawProps = function (
+//   leftEyeX,
+//   leftEyeY,
+//   rightEyeX,
+//   rightEyeY,
+//   noseTipX,
+//   noseTipY,
+//   mouthCenterX,
+//   mouthCenterY,
+//   leftEarTragionX,
+//   leftEarTragionY,
+//   rightEarTragionX,
+//   rightEarTragionY,
+//   faceTiltAngle
+// ) {
+//   // face object has the properties shown at https://github.com/albertpatterson/face-decoration#keypoints-json
+//   // getFacePoint method helps to get the desired face point
+
+//   const rawWidth = leftEarTragionX - rightEarTragionX;
 //   const width = 1.75 * rawWidth;
 //   const height = width;
 
-//   const xCenter = (rightEar.x + leftEar.x) / 2;
-//   const yCenter = (rightEar.y + leftEar.y) / 2;
-
-//   const earXDistance = rawWidth;
-//   const earYDistance = leftEar.y - rightEar.y;
-
-//   const angle = getAngle(earXDistance, earYDistance);
+//   const xCenter = (rightEarTragionX + leftEarTragionX) / 2;
+//   const yCenter = (rightEarTragionY + leftEarTragionY) / 2;
+//   const angle = faceTiltAngle;
 
 //   // draw properties drawn on the face https://github.com/albertpatterson/face-decoration#draw-properties
 //   return { xCenter, yCenter, width, height, angle };
-// }
-
-// window.getDrawProps = function getDrawProps(face) {
-//   // face object has the properties shown at https://github.com/albertpatterson/face-decoration#keypoints-json
-//   // getFacePoint method helps to get the desired face point
-
-//   const leftEar = getPredictionPoint(face, 'leftEarTragion');
-//   const rightEar = getPredictionPoint(face, 'rightEarTragion');
-//   const mouthCenter = getPredictionPoint(face, 'mouthCenter');
-
-//   const rawWidth = leftEar.x - rightEar.x;
-//   const width = 0.75 * rawWidth;
-//   const height = width / 2;
-//   const xCenter = mouthCenter.x;
-//   const yCenter = mouthCenter.y;
-
-//   const earXDistance = rawWidth;
-//   const earYDistance = leftEar.y - rightEar.y;
-
-//   const angle = getAngle(earXDistance, earYDistance);
-
-//   // draw properties drawn on the face https://github.com/albertpatterson/face-decoration#draw-properties
-//   return { xCenter, yCenter, width, height, angle };
-// }
+// };

@@ -1,21 +1,16 @@
-const exampleFace = {
-  keypoints: [
-    { x: 141, y: 61, name: 'rightEye' },
-    { x: 180, y: 64, name: 'leftEye' },
-    { x: 167, y: 80, name: 'noseTip' },
-    { x: 162, y: 103, name: 'mouthCenter' },
-    { x: 105, y: 76, name: 'rightEarTragion' },
-    { x: 189, y: 81, name: 'leftEarTragion' },
-  ],
-  box: {
-    xMin: 104,
-    xMax: 198,
-    yMin: 42,
-    yMax: 135,
-    width: 93,
-    height: 93,
-  },
-};
+const leftEyeX = 200;
+const leftEyeY = 100;
+const rightEyeX = 100;
+const rightEyeY = 110;
+const noseTipX = 150;
+const noseTipY = 105;
+const mouthCenterX = 150;
+const mouthCenterY = 200;
+const leftEarTragionX = 250;
+const leftEarTragionY = 110;
+const rightEarTragionX = 50;
+const rightEarTragionY = 110;
+const faceTiltAngle = (Math.PI / 180) * 10;
 
 const BASE_MESSAGE =
   '"window.getDrawProps must return an object like the following {xCenter:1, yCenter:2, width:3, height:4, angle:5}';
@@ -48,7 +43,21 @@ function getPropError(drawProps, name) {
 
 function getPropsError() {
   try {
-    const drawProps = window.getDrawProps(exampleFace);
+    const drawProps = window.getDrawProps(
+      leftEyeX,
+      leftEyeY,
+      rightEyeX,
+      rightEyeY,
+      noseTipX,
+      noseTipY,
+      mouthCenterX,
+      mouthCenterY,
+      leftEarTragionX,
+      leftEarTragionY,
+      rightEarTragionX,
+      rightEarTragionY,
+      faceTiltAngle
+    );
     if (!drawProps) {
       return new Error(
         `"window.getDrawProps" does not return a value. ${BASE_MESSAGE}`
