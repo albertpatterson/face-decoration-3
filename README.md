@@ -4,7 +4,7 @@ The app will capture video and then apply artificial intelligence to decorate yo
 
 Make your own with [Stackblizt](https://stackblitz.com/edit/web-platform-znstzr?file=code.js,README.md)
 
-![Demo](./doc/demo.gif 'Demo')
+![Demo](./doc/demo2.gif 'Demo')
 
 ## Create Your Own
 
