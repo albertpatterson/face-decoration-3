@@ -16,9 +16,10 @@ const wrapper = document.getElementById('video-wrapper');
 
 let showingVideo = null;
 export async function showExampleVideo() {
-  const exampleUrl = new URL('./assets/wave.mp4', import.meta.url);
   const video = document.createElement('video');
-  video.src = exampleUrl.href;
+  video.src =
+    'https://static.videezy.com/system/resources/previews/000/053/055/original/20200718_VDOFitness_60.mp4';
+  video.crossOrigin = 'anonymous';
   video.muted = true;
   video.preload = true;
   video.autoplay = true;

@@ -36,7 +36,9 @@
       </p>
     </div>
 
-    <div id="user-code-error"></div>
+    <div id="user-code-error">
+      <pre id="user-code-error-display"></pre>
+    </div>
 
     <div id="user-code-valid">
       <div id="view-button-row" class="button-row">
@@ -119,7 +121,7 @@
       window.addEventListener('error', logError);
     </script>
 
-    <script src="./code.js"></script>
+    <script defer src="./code.js"></script>
 
     <!-- Require the peer dependencies of face-detection. -->
     <script

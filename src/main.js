@@ -1,21 +1,10 @@
-import {
-  getExampleVideo,
-  getCameraVideo,
-  showExampleVideo,
-  showCameraVideo,
-  showScreenVideo,
-} from './camera';
+import { showExampleVideo, showCameraVideo, showScreenVideo } from './camera';
 import { getModel } from './model';
-import {
-  initiateVideoAndCanvas,
-  takepictures,
-  sizeVideoAndCanvas,
-  sizeImgAndCanvas,
-} from './draw';
+import { initiateVideoAndCanvas, takepictures } from './draw';
 import './style.scss';
 import './carousel';
 import './add_img';
-import { throwDrawError } from './validate';
+import { waitForValidUserCode } from './validate';
 import { updateTest, stopTest } from './test';
 
 const testSection = document.getElementById('test-section');
@@ -24,96 +13,53 @@ const canvas = document.getElementById('decoration-canvas');
 let currentVideo = null;
 
 window.launchTest = async function () {
+  await hideVideos();
   await showTest();
 };
 
-window.launchExample = async function () {
+async function showSingleVideoTab(showVideoTab) {
+  hideTest();
+  hideDecorationCanvas();
   showVideos();
-  await playExample();
+  showLoading();
+  setTimeout(async () => {
+    await showVideoTab();
+    hideLoading();
+    showDecorationCanvas();
+  }, 0);
+}
+
+window.launchExample = async function () {
+  await showSingleVideoTab(playExample);
 };
 
 window.launchCamera = async function () {
-  showVideos();
-  await playCamera();
+  await showSingleVideoTab(playCamera);
 };
 
 window.launchScreen = async function () {
-  showVideos();
-  await playScreen();
+  await showSingleVideoTab(playScreen);
 };
 
 (async () => {
-  if (window.userCodeError) {
-    showUserLoadError(window.userCodeError);
-  } else {
-    try {
-      throwDrawError();
-
-      showContent();
-      document.addEventListener('DOMContentLoaded', async () => {
-        startVideo();
-      });
-      await window.launchTest();
-    } catch (drawError) {
-      showUserRunError(drawError);
-    }
-  }
+  console.log('start', window);
+  document.body.style.display = 'block';
+  await waitForValidUserCode();
+  showContent();
+  await window.launchTest();
 })();
 
 function showContent() {
   document.getElementById('user-code-valid').style.display = 'block';
 }
 
-function showUserLoadError(drawErrorEvent) {
-  const errorBlock = document.getElementById('user-code-error');
-  const msg = `Error in code.js at line #${drawErrorEvent.lineno}, col #${drawErrorEvent.colno}: "${drawErrorEvent.message}" -- code.js: line #${drawErrorEvent.lineno}, col #${drawErrorEvent.colno}`;
-  const pre = document.createElement('pre');
-  pre.innerText = msg;
-  errorBlock.appendChild(pre);
-
-  errorBlock.style.display = 'block';
+const LOADING_INDICATOR = document.getElementById('loading-indicator');
+function showLoading() {
+  LOADING_INDICATOR.style.display = 'block';
 }
 
-function showUserRunError(drawError) {
-  const errorBlock = document.getElementById('user-code-error');
-  const pre = document.createElement('pre');
-  pre.innerText = drawError.stack;
-  errorBlock.appendChild(pre);
-
-  errorBlock.style.display = 'block';
-}
-
-async function startVideo() {
-  startLoading();
-
-  const model = await getModel();
-
-  await playExample();
-
-  window.addEventListener('resize', () =>
-    sizeVideoAndCanvas(currentVideo, canvas)
-  );
-
-  clearLoading();
-  showLaunchButton();
-}
-
-let extraLoadingInfoTimeout = null;
-function startLoading() {
-  extraLoadingInfoTimeout = setTimeout(() => {
-    document.getElementById('extra-loading-info').style.display = 'block';
-  }, 10e3);
-}
-
-function showLaunchButton() {
-  const launchButtonRow = document.getElementById('view-button-row');
-  launchButtonRow.style.display = 'flex';
-}
-
-function clearLoading() {
-  clearTimeout(extraLoadingInfoTimeout);
-  const loadingIndicator = document.getElementById('loading-indicator');
-  loadingIndicator.parentElement.removeChild(loadingIndicator);
+function hideLoading() {
+  LOADING_INDICATOR.style.display = 'none';
 }
 
 async function playExample() {
@@ -146,8 +92,24 @@ async function showTest() {
   await updateTest();
 }
 
-function showVideos() {
+function hideTest() {
   testSection.style.display = 'none';
-  videoSection.style.display = 'block';
   stopTest();
+}
+
+function showVideos() {
+  videoSection.style.display = 'block';
+}
+
+function hideVideos() {
+  videoSection.style.display = 'none';
+}
+
+const DECORATION_CANVAS = document.getElementById('decoration-canvas');
+function hideDecorationCanvas() {
+  DECORATION_CANVAS.style.display = 'none';
+}
+
+function showDecorationCanvas() {
+  DECORATION_CANVAS.style.display = 'inline';
 }

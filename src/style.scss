@@ -38,7 +38,8 @@ body {
 }
 
 .canvas-wrapper {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .video-wrapper {
@@ -47,6 +48,7 @@ body {
 
 #loading-indicator {
   text-align: center;
+  height: 300px;
 }
 
 .lds-spinner,

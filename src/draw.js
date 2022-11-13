@@ -29,8 +29,8 @@ export function getCanvasSize(video) {
 
   const aspectRatio = vHeight / vWidth;
 
-  const width = Math.min(vWidth, window.innerWidth);
-  const height = width * aspectRatio;
+  const height = 300;
+  const width = height / aspectRatio;
   const scale = width / vWidth;
 
   return { height, width, scale };

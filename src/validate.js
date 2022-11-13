@@ -66,3 +66,46 @@ function throwPropsError() {
     throwPropError(drawProps, name);
   }
 }
+
+export async function waitForValidUserCode() {
+  await new Promise((res) => {
+    const int = setInterval(async () => {
+      if (window.userCodeError) {
+        showUserLoadError(window.userCodeError);
+      } else {
+        clearUserLoadError();
+        try {
+          throwDrawError();
+          clearUserRunError();
+          clearInterval(int);
+          res();
+        } catch (drawError) {
+          showUserRunError(drawError);
+        }
+      }
+    }, 250);
+  });
+}
+
+const USER_CODE_ERROR_BLOCK = document.getElementById('user-code-error');
+const USER_CODE_ERROR_DISPLAY = document.getElementById(
+  'user-code-error-display'
+);
+function showUserLoadError(drawErrorEvent) {
+  const msg = `Error in code.js at line #${drawErrorEvent.lineno}, col #${drawErrorEvent.colno}: "${drawErrorEvent.message}" -- code.js: line #${drawErrorEvent.lineno}, col #${drawErrorEvent.colno}`;
+  USER_CODE_ERROR_DISPLAY.innerText = msg;
+  USER_CODE_ERROR_BLOCK.style.display = 'block';
+}
+
+function clearUserLoadError() {
+  USER_CODE_ERROR_BLOCK.style.display = 'none';
+}
+
+function showUserRunError(drawError) {
+  USER_CODE_ERROR_DISPLAY.innerText = drawError.stack;
+  USER_CODE_ERROR_BLOCK.style.display = 'block';
+}
+
+function clearUserRunError() {
+  USER_CODE_ERROR_BLOCK.style.display = 'none';
+}
